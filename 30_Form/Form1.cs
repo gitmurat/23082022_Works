@@ -107,5 +107,72 @@ namespace _30_Form
             lbl_Clock.Text = DateTime.Now.ToString("HH:mm:ss");
         }
 
+        private void add_Click(object sender, EventArgs e)
+        {
+            txt_initialnum.Text = txt_screen.Text;
+            Button button = (Button)sender; //Button objesini unbox ediyoruz.
+            string op = button.Text;
+            txt_operator.Text = op;
+            txt_screen.Text = "";
+        }
+
+        private void calculate_Click(object sender, EventArgs e)
+        {
+            int result;
+            switch (txt_operator.Text)
+            {
+                case "+":
+                    result = Convert.ToInt16(txt_initialnum.Text) + Convert.ToInt16(txt_screen.Text);
+                    LogWrite(result.ToString());
+                    txt_initialnum.Text = txt_initialnum.Text + " "+ txt_operator.Text +" " + txt_screen.Text;
+
+                    txt_screen.Text = Convert.ToString(result);
+                    txt_operator.Text = "=";
+                    break;
+
+                case "-":
+                    result = Convert.ToInt16(txt_initialnum.Text) - Convert.ToInt16(txt_screen.Text);
+                    LogWrite(result.ToString());
+                    txt_initialnum.Text = txt_initialnum.Text + " " + txt_operator.Text + " " + txt_screen.Text;
+
+                    txt_screen.Text = Convert.ToString(result);
+                    txt_operator.Text = "=";
+                    break;
+
+                case "*":
+                    result = Convert.ToInt16(txt_initialnum.Text) * Convert.ToInt16(txt_screen.Text);
+                    LogWrite(result.ToString());
+                    txt_initialnum.Text = txt_initialnum.Text + " " + txt_operator.Text + " " + txt_screen.Text;
+
+                    txt_screen.Text = Convert.ToString(result);
+                    txt_operator.Text = "=";
+                    break;
+
+                case "/":
+                    result = Convert.ToInt16(txt_initialnum.Text) / Convert.ToInt16(txt_screen.Text);
+                    LogWrite(result.ToString());
+                    txt_initialnum.Text = txt_initialnum.Text + " " + txt_operator.Text + " " + txt_screen.Text;
+
+                    txt_screen.Text = Convert.ToString(result);
+                    txt_operator.Text = "=";
+                    break;
+
+            }
+                
+        }
+
+        private void clearAll_Click(object sender, EventArgs e)
+        {
+            txt_screen.Text = "";
+            txt_operator.Text = "";
+            txt_initialnum.Text = "";
+            txt_log.Text = "";
+        }
+
+        private void backspace_Click(object sender, EventArgs e)
+        {
+            int del = txt_screen.Text.Length - 1;
+            txt_screen.Text = txt_screen.Text.Substring(0, del);
+        }
     }
 }
